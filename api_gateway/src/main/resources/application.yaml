@@ -2,18 +2,19 @@ spring:
   application:
     name: api-gateway
   cloud:
-    webflux:
-      gateway:
-        routes:
-          - id: course-service-route
-            uri: lb://COURSE-SERVICE
-            predicates:
-              - Path=/identity/**
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: course-service-route
+              uri: lb://COURSE-SERVICE
+              predicates:
+                - Path=/api/courses/**
 
-          - id: student-service-route
-            uri: lb://STUDENT
-            predicates:
-              - Path=/users/**
+            - id: student-service-route
+              uri: lb://STUDENT
+              predicates:
+                - Path=/api/students/**
 
 server:
   port: 8080
