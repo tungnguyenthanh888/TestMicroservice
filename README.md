@@ -6,13 +6,15 @@
 
 ![img_3.png](img_3.png)
 
-##Task 3
+### Task 3
 Giải thích cơ chế "Service Discovery": Tại sao Gateway không nên gọi trực tiếp địa chỉ IP/Port của Service?
-Với cơ chế của Service Discorvery, mọi service đăng ký bên trong eureka server sẽ xuất hiện với tên service đã được thiết lập, từ đó chúng sử dụng lb:\ + tên service xuất hiện trên eureka. Api gateway sẽ thông qua service đã đăng ký trong eureka service để có thể routing.
-Gateway không nên gọi trực tiếp địa chỉ IP/Port, vì chúng sẽ luôn thay đổi sau khi khởi động lại thiết bị, những thông tin này cần được bảo mật an toàn.
+- Với cơ chế của Service Discorvery, mọi service đăng ký bên trong eureka server sẽ xuất hiện với tên service đã được thiết lập, từ đó chúng sử dụng lb:\ + tên service xuất hiện trên eureka. Api gateway sẽ thông qua service đã đăng ký trong eureka service để có thể routing.
+- Gateway không nên gọi trực tiếp địa chỉ IP/Port, vì chúng sẽ luôn thay đổi sau khi khởi động lại thiết bị, những thông tin này cần được bảo mật an toàn.
 Nếu số lượng request tăng đột biến, bạn sẽ làm gì để mở rộng (Scale) Student Service mà không làm thay đổi cấu hình của Gateway?
-Nếu số lượng request tăng đột biết, mình có thể tăng số lượng Student Service lên và khởi chạy trên các port khác nhau ví dụ 8085 8086. Sau đó cấu hình các Student Service đó lên eureka server. Với cơ chế loadbalance thì api gateway sẽ được eureka hỗ trợ điều phối công việc routing đến các Student service khác rảnh rỗi, điều này giúp hệ thống scale lên được mà không cần phải thay đổi cấu hình của Api Gateway.
+- Nếu số lượng request tăng đột biết, mình có thể tăng số lượng Student Service lên và khởi chạy trên các port khác nhau ví dụ 8085 8086. Sau đó cấu hình các Student Service đó lên eureka server. Với cơ chế loadbalance thì api gateway sẽ được eureka hỗ trợ điều phối công việc routing đến các Student service khác rảnh rỗi, điều này giúp hệ thống scale lên được mà không cần phải thay đổi cấu hình của Api Gateway.
+
 So sánh ưu/nhược điểm của phương thức giao tiếp qua Open Feign (Đồng bộ) so với Kafka (Bất đồng bộ) trong bài toán này.
+
 Open Feign
 Ưu điểm:
 
