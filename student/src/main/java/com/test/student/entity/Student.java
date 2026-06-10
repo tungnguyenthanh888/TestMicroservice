@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.util.List;
+
 @Entity
 @Table(name="students")
 @Data
@@ -22,7 +24,11 @@ public class Student {
     private String name;
     private String email;
 
-    @JdbcTypeCode(SqlTypes.ARRAY)
-    @Column(name = "enrolled_courses")
-    private Long[] enrolledCourses;
+    @ElementCollection
+    @CollectionTable(
+            name = "student_courses",
+            joinColumns = @JoinColumn(name = "student_id")
+    )
+    @Column(name = "course_id")
+    private List<Long> enrolledCourses;
 }
